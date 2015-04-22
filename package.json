@@ -1,0 +1,36 @@
+{
+  "name": "ut_gitswarm",
+  "description": "Extension for Git over Bittorrent",
+  "version": "0.1.0",
+  "author": {
+    "name": "Chris Ball",
+    "email": "chris@printf.net"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "bittorrent-protocol": "^1.0.0",
+    "tape": "^3.5.0"
+  },
+  "homepage": "http://gitswarm.com",
+  "keywords": [
+    "torrent",
+    "bittorrent",
+    "ut_gitswarm",
+    "gitswarm",
+    "git",
+    "p2p"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cjb/ut_gitswarm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cjb/ut_gitswarm/issues"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+}
