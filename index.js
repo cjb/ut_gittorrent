@@ -1,6 +1,7 @@
 /* jshint camelcase: false */
 
 var EventEmitter = require('events').EventEmitter
+var inherits = require('inherits')
 
 module.exports = function () {
 
@@ -22,18 +23,26 @@ module.exports = function () {
     }
   }
 
+  ut_gitswarm.prototype.ask = function(sha1) {
+    var self = this
+    console.log("asking for " + sha1)
+    message = sha1
+    self._sendMessage(message)
+  }
+
   ut_gitswarm.prototype.onMessage = function (buf) {
     var self = this
     var message
 
     console.log("in onMessage")
+    console.log(buf)
   }
 
-  ut_gitswarm.prototype._sendMessage = function () {
+  ut_gitswarm.prototype._sendMessage = function (message) {
     var self = this
 
     self._wire.extended('ut_gitswarm', {
-      'foo': 'bar'
+      'foo': message
     })
   }
 
