@@ -54,9 +54,9 @@ module.exports = function () {
       // drop invalid messages
       return
     }
-  }
 
-  console.error(dict)
+    console.error(dict)
+  }
 
   ut_gitswarm.prototype._sendMessage = function (message) {
     var self = this
