@@ -3,6 +3,8 @@
 var bencode = require('bencode')
 var EventEmitter = require('events').EventEmitter
 var inherits = require('inherits')
+var WebTorrent = require('webtorrent')
+var fs = require('fs');
 
 module.exports = function () {
 
@@ -18,8 +20,6 @@ module.exports = function () {
   ut_gitswarm.prototype.name = 'ut_gitswarm'
 
   ut_gitswarm.prototype.onExtendedHandshake = function (handshake) {
-    console.error('onExtendedHandshake for gitswarm')
-    console.error(handshake)
     var self = this
     if (!handshake.m || !handshake.m.ut_gitswarm) {
       return self.emit('warning', new Error('Peer does not support ut_gitswarm'))
@@ -32,8 +32,13 @@ module.exports = function () {
 
   ut_gitswarm.prototype.ask = function(sha1) {
     var self = this
-    console.error("asking for " + sha1)
     var message = {sha: sha1}
+    self._sendMessage(message)
+  }
+
+  ut_gitswarm.prototype.sendTorrent = function (infoHash) {
+    var self = this
+    var message = {infoHash: infoHash}
     self._sendMessage(message)
   }
 
@@ -41,28 +46,24 @@ module.exports = function () {
     var self = this
     var message
 
-    console.error("in onMessage")
-    console.error(buf.toString())
+    var dict = bencode.decode(buf.toString())
 
-    var dict, trailer
-    try {
-      var str = buf.toString()
-      var trailerIndex = str.indexOf('ee') + 2
-      dict = bencode.decode(str.substring(0, trailerIndex))
-      trailer = buf.slice(trailerIndex)
-    } catch (err) {
-      // drop invalid messages
+    if (dict.gitswarm.sha) {
+      var sha = dict.gitswarm.sha.toString()
+      self.emit('generatePack', sha)
       return
     }
 
-    console.error(dict)
+    if (dict.gitswarm.infoHash) {
+      self.emit('receivedTorrent', dict.gitswarm.infoHash.toString())
+      return
+    }
   }
 
   ut_gitswarm.prototype._sendMessage = function (message) {
     var self = this
-
     self._wire.extended('ut_gitswarm', {
-      'foo': message
+      'gitswarm': message
     })
   }
 
