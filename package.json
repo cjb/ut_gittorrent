@@ -9,6 +9,7 @@
   "dependencies": {
   },
   "devDependencies": {
+    "bencode": "^0.7.0",
     "bittorrent-protocol": "^1.0.0",
     "tape": "^3.5.0"
   },

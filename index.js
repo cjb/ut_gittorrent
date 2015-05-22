@@ -3,7 +3,6 @@
 var bencode = require('bencode')
 var EventEmitter = require('events').EventEmitter
 var inherits = require('inherits')
-var WebTorrent = require('webtorrent')
 var fs = require('fs');
 
 module.exports = function () {
