@@ -1,5 +1,5 @@
 {
-  "name": "ut_gitswarm",
+  "name": "ut_gittorrent",
   "description": "Extension for Git over Bittorrent",
   "version": "0.1.0",
   "author": {
@@ -13,12 +13,12 @@
     "bittorrent-protocol": "^1.0.0",
     "tape": "^3.5.0"
   },
-  "homepage": "http://gitswarm.com",
+  "homepage": "http://gittorrent.org",
   "keywords": [
     "torrent",
     "bittorrent",
-    "ut_gitswarm",
-    "gitswarm",
+    "ut_gittorrent",
+    "gittorrent",
     "git",
     "p2p"
   ],
@@ -26,10 +26,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/cjb/ut_gitswarm.git"
+    "url": "git://github.com/cjb/ut_gittorrent.git"
   },
   "bugs": {
-    "url": "https://github.com/cjb/ut_gitswarm/issues"
+    "url": "https://github.com/cjb/ut_gittorrent/issues"
   },
   "scripts": {
     "test": "tape test/*.js"
