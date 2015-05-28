@@ -11,6 +11,7 @@
   "devDependencies": {
     "bencode": "^0.7.0",
     "bittorrent-protocol": "^1.0.0",
+    "inherits": "^2.0.1",
     "tape": "^3.5.0"
   },
   "homepage": "http://gittorrent.org",
