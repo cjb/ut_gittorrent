@@ -1,4 +1,4 @@
-# ut_gitswarm [![npm](https://npmjs.org/package/ut_gitswarm)]
+# ut_gitswarm
 
 ### BitTorrent Extension for exchanging git objects
 
