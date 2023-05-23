@@ -3,12 +3,12 @@ import bencode from 'bencode'
 
 export default gittorrent => {
   class utGittorrent extends EventEmitter {
-    constructor(wire) {
+    constructor (wire) {
       super()
       this._wire = wire
     }
 
-    onExtendedHandshake(handshake) {
+    onExtendedHandshake (handshake) {
       if (!handshake.m || !handshake.m.ut_gittorrent) {
         return this.emit('warning', new Error('Peer does not support ut_gittorrent'))
       }
@@ -18,17 +18,17 @@ export default gittorrent => {
       }
     }
 
-    ask(sha1) {
-      var message = {sha: sha1}
+    ask (sha1) {
+      const message = { sha: sha1 }
       this._sendMessage(message)
     }
 
-    sendTorrent(infoHash) {
-      var message = {infoHash: infoHash}
+    sendTorrent (infoHash) {
+      const message = { infoHash }
       this._sendMessage(message)
     }
 
-    onMessage(buf) {
+    onMessage (buf) {
       const dict = bencode.decode(buf.toString())
       if (dict.gittorrent.sha) {
         const sha = dict.gittorrent.sha.toString()
@@ -37,12 +37,11 @@ export default gittorrent => {
       }
       if (dict.gittorrent.infoHash) {
         this.emit('receivedTorrent', dict.gittorrent.infoHash.toString())
-        return
       }
     }
 
     _sendMessage = function (message) {
-      this._wire.extended('ut_gittorrent', { 'gittorrent': message })
+      this._wire.extended('ut_gittorrent', { gittorrent: message })
     }
   }
 

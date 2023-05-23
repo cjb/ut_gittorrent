@@ -5,7 +5,7 @@ import utGittorrent from '../index.js'
 import test from 'tape'
 
 test('wire.use(ut_gittorrent())', (t) => {
-  var wire = new Protocol()
+  const wire = new Protocol()
   wire.pipe(wire)
 
   wire.use(utGittorrent())
