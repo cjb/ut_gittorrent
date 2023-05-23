@@ -26,6 +26,7 @@
     "url": "https://github.com/cjb/ut_gittorrent/issues"
   },
   "scripts": {
+    "lint": "standard --fix test/*.js index.js",
     "test": "tape test/*.js"
   },
   "dependencies": {
