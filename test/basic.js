@@ -1,18 +1,15 @@
-/* jshint camelcase: false */
+import Protocol from 'bittorrent-protocol'
 
-var Protocol = require('bittorrent-protocol')
-var ut_gittorrent = require('../')
-var test = require('tape')
+import utGittorrent from '../index.js'
 
-test('wire.use(ut_gittorrent())', function (t) {
+import test from 'tape'
+
+test('wire.use(ut_gittorrent())', (t) => {
   var wire = new Protocol()
   wire.pipe(wire)
 
-  wire.use(ut_gittorrent())
+  wire.use(utGittorrent())
 
   t.ok(wire.ut_gittorrent)
   t.end()
 })
-
-// TODO: more thorough unit tests
-
